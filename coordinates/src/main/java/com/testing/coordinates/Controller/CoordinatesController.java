@@ -1,8 +1,11 @@
+
 package com.testing.coordinates.Controller;
 
 import com.testing.coordinates.Service.CoordinatesService;
 import com.testing.coordinates.model.Coordinates;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,8 +18,13 @@ public class CoordinatesController {
         return "Coordinates";
     }
     @PostMapping("/distance")
-    public double calculateDistance(@RequestBody Coordinates coordinates){
-        return coordinatesService.calculateDistance(coordinates);
+    public ResponseEntity<Double> calculateDistance(@RequestBody Coordinates coordinates){
+        double distance = coordinatesService.calculateDistance(coordinates);
+        return new ResponseEntity<Double>(distance, HttpStatus.OK);
+    }
+    @PostMapping("/distance2")
+    public ResponseEntity<Double> calculateDistance2(@RequestBody Coordinates coordinates, @RequestParam double lat2, @RequestParam double lon2){
+        double distance = coordinatesService.calculateDistance2(coordinates, lat2, lon2);
+        return new ResponseEntity<Double>(distance, HttpStatus.OK);
     }
 }
-

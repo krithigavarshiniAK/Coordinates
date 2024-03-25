@@ -21,13 +21,16 @@ public class CoordinatesServiceImple implements CoordinatesService {
                 Math.cos(lat1) * Math.cos(lat2) *
                         Math.pow(Math.sin((lon2 - lon1) / 2), 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = EARTH_RADIUS * c;
+        double distance = EARTH_RADIUS * c *1000;
         return distance;
     }
-
     @Override
-    public double calculateDistance2(Coordinates coordinates, double lat2, double lon2) {
-        System.out.println("Inside Calculate Distance method");
+    public double calculateDistance1(Coordinates coordinates, double lat2, double lon2) {
+        System.out.println("Inside Calculate Distance method 2");
+
+        if (!isValidLatitude(lat2) || !isValidLongitude(lon2)) {
+            throw new IllegalArgumentException("Invalid latitude or longitude values");
+        }
         //converting degree to radians.
         double lat1 = Math.toRadians(coordinates.getLatitude1());
         double lon1 = Math.toRadians(coordinates.getLongitude1());
@@ -41,5 +44,34 @@ public class CoordinatesServiceImple implements CoordinatesService {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double distance = EARTH_RADIUS * c;
         return distance;
+    }
+    @Override
+    public double calculateDistance2(double lat1, double lon1, double lat2, double lon2) {
+        System.out.println("Inside Calculate Distance method 3");
+
+        if (!isValidLatitude(lat1) || !isValidLongitude(lon1) || !isValidLatitude(lat2) || !isValidLongitude(lon2)) {
+            throw new IllegalArgumentException("Invalid latitude or longitude values");
+        }
+
+        lat1 = Math.toRadians(lat1);
+        lon1 = Math.toRadians(lon1);
+        lat2 = Math.toRadians(lat2);
+        lon2 = Math.toRadians(lon2);
+
+        //finding the distance between latitude and longitude.
+        double a = Math.pow(Math.sin((lat2 - lat1) / 2), 2) +
+                Math.cos(lat1) * Math.cos(lat2) *
+                        Math.pow(Math.sin((lon2 - lon1) / 2), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = EARTH_RADIUS * c;
+        return distance;
+    }
+
+    private boolean isValidLatitude(double latitude) {
+        return latitude >= -90 && latitude <= 90;
+    }
+
+    private boolean isValidLongitude(double longitude) {
+        return longitude >= -180 && longitude <= 180;
     }
 }

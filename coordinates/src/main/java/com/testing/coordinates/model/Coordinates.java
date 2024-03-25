@@ -10,36 +10,27 @@ import javax.persistence.Entity;
 @Setter
 public class Coordinates {
 
+    @Getter
     private double latitude1;
+    @Getter
     private double longitude1;
+    @Getter
     private double latitude2;
+    @Getter
     private double longitude2;
+    @Getter
+    private double distance;
 
     public Coordinates() {
 
     }
+    public Coordinates(double lat1, double lon1, double lat2, double lon2, double distance) {
+            this.latitude1 = lat1;
+            this.longitude1 = lon1;
+            this.latitude2 = lat2;
+            this.longitude2 = lon2;
+            this.distance = distance;
+        }
 
-    public double getLatitude2() {
-        return latitude2;
-    }
-
-    public double getLongitude2() {
-        return longitude2;
-    }
-
-    public double getLongitude1() {
-        return longitude1;
-    }
-    public double getLatitude1() {
-        return latitude1;
-    }
-
-
-    public Coordinates(double latitude1, double longitude1, double latitude2, double longitude2) {
-        this.latitude1 = latitude1;
-        this.longitude1 = longitude1;
-        this.latitude2 = latitude2;
-        this.longitude2 = longitude2;
-    }
 }
 

@@ -22,9 +22,21 @@ public class CoordinatesController {
         double distance = coordinatesService.calculateDistance(coordinates);
         return new ResponseEntity<Double>(distance, HttpStatus.OK);
     }
+
     @PostMapping("/distance2")
-    public ResponseEntity<Double> calculateDistance2(@RequestBody Coordinates coordinates, @RequestParam double lat2, @RequestParam double lon2){
-        double distance = coordinatesService.calculateDistance2(coordinates, lat2, lon2);
+    public ResponseEntity<Double> calculateDistance1(@RequestBody Coordinates coordinates,
+                                                     @RequestParam(required = true) double lat2,
+                                                     @RequestParam(required = true) double lon2){
+        double distance = coordinatesService.calculateDistance1(coordinates, lat2, lon2);
+        return new ResponseEntity<Double>(distance, HttpStatus.OK);
+    }
+
+    @PostMapping("/distance3")
+    public ResponseEntity<Double> calculateDistance2(@RequestParam(required = true) double lat1,
+                                                     @RequestParam(required = true) double lon1,
+                                                     @RequestParam(required = true) double lat2,
+                                                     @RequestParam(required = true) double lon2){
+        double distance = coordinatesService.calculateDistance2(lat1, lon1, lat2, lon2);
         return new ResponseEntity<Double>(distance, HttpStatus.OK);
     }
 }

@@ -21,16 +21,12 @@ public class Coordinates {
     @Getter
     private double distance;
 
-    public Coordinates() {
-
-    }
-    public Coordinates(double lat1, double lon1, double lat2, double lon2, double distance) {
-            this.latitude1 = lat1;
-            this.longitude1 = lon1;
-            this.latitude2 = lat2;
-            this.longitude2 = lon2;
+    public Coordinates(double latitude_1, double longitude_1, double latitude_2, double longitude_2, double distance) {
+            this.latitude1 = latitude_1;
+            this.longitude1 = longitude_1;
+            this.latitude2 = latitude_2;
+            this.longitude2 = longitude_2;
             this.distance = distance;
         }
-
 }
 

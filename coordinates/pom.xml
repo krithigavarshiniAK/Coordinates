@@ -14,7 +14,7 @@
 	<name>coordinates</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -54,11 +54,6 @@
 			<artifactId>mockito-core</artifactId>
 			<version>5.10.0</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>2.0.12</version>
 		</dependency>
 	</dependencies>
 	<build>

@@ -18,25 +18,25 @@ public class CoordinatesController {
         return "Coordinates";
     }
     @PostMapping("/distance")
-    public ResponseEntity<Double> calculateDistance(@RequestBody Coordinates coordinates){
-        double distance = coordinatesService.calculateDistance(coordinates);
+    public ResponseEntity<Double> getDistanceWithFixedSourceAndDestination(@RequestBody Coordinates coordinates){
+        double distance = coordinatesService.getDistanceWithFixedSourceAndDestination(coordinates);
         return new ResponseEntity<Double>(distance, HttpStatus.OK);
     }
 
     @PostMapping("/distance2")
-    public ResponseEntity<Double> calculateDistance1(@RequestBody Coordinates coordinates,
-                                                     @RequestParam(required = true) double lat2,
-                                                     @RequestParam(required = true) double lon2){
-        double distance = coordinatesService.calculateDistance1(coordinates, lat2, lon2);
+    public ResponseEntity<Double> getDistanceWithFixedSource(@RequestBody Coordinates coordinates,
+                                                     @RequestParam(required = true) double latitude2,
+                                                     @RequestParam(required = true) double longitude2){
+        double distance = coordinatesService.getDistanceWithFixedSource(coordinates, latitude2, longitude2);
         return new ResponseEntity<Double>(distance, HttpStatus.OK);
     }
 
     @PostMapping("/distance3")
-    public ResponseEntity<Double> calculateDistance2(@RequestParam(required = true) double lat1,
-                                                     @RequestParam(required = true) double lon1,
-                                                     @RequestParam(required = true) double lat2,
-                                                     @RequestParam(required = true) double lon2){
-        double distance = coordinatesService.calculateDistance2(lat1, lon1, lat2, lon2);
+    public ResponseEntity<Double> getDistanceWithDynamicSourceAndDestination(@RequestParam(required = true) double latitude1,
+                                                     @RequestParam(required = true) double longitude1,
+                                                     @RequestParam(required = true) double latitude2,
+                                                     @RequestParam(required = true) double longitude2){
+        double distance = coordinatesService.getDistanceWithDynamicSourceAndDestination(latitude1, longitude1, latitude2, longitude2);
         return new ResponseEntity<Double>(distance, HttpStatus.OK);
     }
 }

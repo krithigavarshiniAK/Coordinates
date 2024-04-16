@@ -36,6 +36,45 @@ class CoordinatesApplicationTests {
     public void demotest() {
         assertTrue(true);
     }
+
+    @Autowired
+    CoordinatesServiceImple coordinatesServiceImpleUnderTest;
+
+    @Autowired
+    ExternalPropertyConfig externalPropertyConfig;
+
+    @BeforeEach
+    void setUp() {
+        coordinatesServiceImpleUnderTest = new CoordinatesServiceImple();
+        externalPropertyConfig = new ExternalPropertyConfig();
+    }
+
+//    @Test
+//    void testGetDistanceWithFixedSourceAndDestination(){
+//        final Coordinates coordinates = new Coordinates(13.011760, 80.221481, 11.941591, 79.808311, 127171.1223524084);
+//        final double result = coordinatesServiceImpleUnderTest.getDistanceWithFixedSourceAndDestination(coordinates);
+//        assertThat(result).isEqualTo(127171.1223524084, within(0.0001));
+//    }
+
+//    @Test
+//    void testGetDistanceWithFixedSource() {
+//        final Coordinates coordinates = new Coordinates(13.011760, 80.221481, 13.008430, 80.207169, 1594.1693658154443);
+//        final double result = coordinatesServiceImpleUnderTest.getDistanceWithFixedSource(coordinates, 13.008430, 80.207169);
+//        assertThat(result).isEqualTo(1594.1693658154443, within(0.0001));
+//    }
+
+//    @Test
+//    void testGetDistanceWithDynamicSourceAndDestination() {
+//        assertThat(coordinatesServiceImpleUnderTest.getDistanceWithDynamicSourceAndDestination(9.9252, 78.1198, 13.0826,
+//                80.2707)).isEqualTo(422105.23754448025, within(0.0001));
+//    }
+
+    @Test
+    void testPassGeoCoordinate() {
+        externalPropertyConfig.loadProperties();
+        assertThat(coordinatesServiceImpleUnderTest.fetchAndCompareDistances("000000000000020","APPSYN00003", 9.9252,78.1198))
+                .isEqualTo("The distance Comparison Output is : true.");
+    }
     @Test
     void testCoord() throws Exception {
         final MockHttpServletResponse response = mockMvc.perform(get("/api/v3/Coordinates/coord-test")
